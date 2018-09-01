@@ -1,0 +1,15 @@
+@inherits BlogPostPreviewModel
+
+<div class="post-preview">
+  <NavLink href="@($"posts/{blogPost.Id}")">
+    <h2 class="post-title">
+      @blogPost.Title
+    </h2>
+    <h3 class="post-subtitle">
+      @blogPost.PostSummary
+    </h3>
+  </NavLink>
+  <p class="post-meta">Posted by
+    <NavLink href="/">@blogPost.Author</NavLink>
+    on @blogPost.Posted</p>
+</div>
