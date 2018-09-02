@@ -6,7 +6,6 @@ using System.Linq;
 
 namespace WordDaze.Server.Controllers
 {
-    [Route("api")]
     public class BlogPostsController : Controller
     {
         private List<BlogPost> _blogPosts { get; set; } = new List<BlogPost> {
@@ -47,8 +46,8 @@ namespace WordDaze.Server.Controllers
             },
         };
 
-        [HttpGet("blogposts")]
-        public IActionResult BlogPosts()
+        [HttpGet(Urls.BlogPosts)]
+        public IActionResult GetBlogPosts()
         {
             return Ok(_blogPosts);
         }

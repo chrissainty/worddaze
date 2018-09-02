@@ -22,7 +22,7 @@ namespace WordDaze.Client.Features.Home
 
         private async Task LoadBlogPosts() 
         {
-            var blogPostsResponse = await _httpClient.GetJsonAsync<List<BlogPost>>("api/blogposts");
+            var blogPostsResponse = await _httpClient.GetJsonAsync<List<BlogPost>>(Urls.BlogPosts);
             blogPosts = blogPostsResponse.OrderByDescending(p => p.Posted).ToList();
         }
     }
