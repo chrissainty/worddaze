@@ -51,5 +51,16 @@ namespace WordDaze.Server.Controllers
         {
             return Ok(_blogPosts);
         }
+
+        [HttpGet(Urls.BlogPost)]
+        public IActionResult GetBlogPostById(int id) 
+        {
+            var blogPost = _blogPosts.SingleOrDefault(x => x.Id == id);
+
+            if (blogPost == null)
+                return NotFound();
+
+            return Ok(blogPost);
+        }
     }
 }
