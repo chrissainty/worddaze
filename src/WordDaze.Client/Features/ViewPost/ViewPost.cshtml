@@ -1,0 +1,15 @@
+@page "/viewpost/{postId}"
+@layout MainLayout
+@inherits ViewPostModel
+
+<WdHeader Heading=@BlogPost.Title Author=@BlogPost.Author PostedDate=@BlogPost.Posted></WdHeader>
+
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                @BlogPost.Post
+            </div>
+        </div>
+    </div>
+</article>
