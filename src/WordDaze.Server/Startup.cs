@@ -25,6 +25,8 @@ namespace WordDaze.Server
                     WasmMediaTypeNames.Application.Wasm,
                 });
             });
+
+            services.AddSingleton(typeof(BlogPostService));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

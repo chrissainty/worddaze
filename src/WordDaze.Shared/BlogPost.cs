@@ -12,7 +12,7 @@ namespace WordDaze.Shared
         public string PostSummary 
         { 
             get {
-                if (Post.Length > 50)
+                if (Post?.Length > 50)
                     return Post.Substring(0, 50);
 
                 return Post;

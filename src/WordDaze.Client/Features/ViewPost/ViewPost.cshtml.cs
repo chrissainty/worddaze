@@ -1,6 +1,7 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Markdig;
 using Microsoft.AspNetCore.Blazor;
 using Microsoft.AspNetCore.Blazor.Components;
 using WordDaze.Shared;
@@ -23,6 +24,7 @@ namespace WordDaze.Client.Features.ViewPost
         private async Task LoadBlogPost() 
         {
             BlogPost = await _httpClient.GetJsonAsync<BlogPost>(Urls.BlogPost.Replace("{id}", PostId));
+            BlogPost.Post = Markdown.ToHtml(BlogPost.Post);
         }
     }
 }
