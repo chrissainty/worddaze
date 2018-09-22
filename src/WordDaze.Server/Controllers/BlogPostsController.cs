@@ -39,5 +39,21 @@ namespace WordDaze.Server.Controllers
 
             return Created(new Uri(Urls.BlogPost.Replace("{id}", savedBlogPost.Id.ToString()), UriKind.Relative), savedBlogPost);
         }
+
+        [HttpPut(Urls.UpdateBlogPost)]
+        public IActionResult UpdateBlogPost(int id, [FromBody]BlogPost updatedBlogPost)
+        {
+            _blogPostService.UpdateBlogPost(id, updatedBlogPost.Post, updatedBlogPost.Title);
+
+            return Ok();
+        }
+
+        [HttpDelete(Urls.DeleteBlogPost)]
+        public IActionResult DeleteBlogPost(int id)
+        {
+            _blogPostService.DeleteBlogPost(id);
+
+            return Ok();
+        }
     }
 }
