@@ -1,4 +1,4 @@
-@page "/viewpost/{postId}"
+@page "/viewpost/{PostId}"
 @layout MainLayout
 @inherits ViewPostModel
 
@@ -7,8 +7,13 @@
 <article>
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="col-md-12">
                 @((MarkupString)BlogPost.Post)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <NavLink class="btn btn-primary float-right" href="@($"/editpost/{BlogPost.Id}")">Edit</NavLink>
             </div>
         </div>
     </div>
