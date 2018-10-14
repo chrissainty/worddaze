@@ -13,6 +13,7 @@ namespace WordDaze.Client.Features.PostEditor
     {
         [Inject] private HttpClient _httpClient { get; set; }
         [Inject] private IUriHelper _uriHelper { get; set; }
+        [Inject] private AppState _appState { get; set; }
 
         [Parameter] protected string PostId { get; set; }
 
@@ -26,6 +27,11 @@ namespace WordDaze.Client.Features.PostEditor
 
         protected override async Task OnInitAsync()
         {
+            if (!_appState.IsLoggedIn) 
+            {
+                _uriHelper.NavigateTo("/");
+            }
+
             if (!string.IsNullOrEmpty(PostId))
             {
                 await LoadPost();
@@ -38,7 +44,6 @@ namespace WordDaze.Client.Features.PostEditor
         {
             var newPost = new BlogPost() {
                 Title = Title,
-                Author = "Joe Bloggs",
                 Post = Post,
                 Posted = DateTime.Now
             };

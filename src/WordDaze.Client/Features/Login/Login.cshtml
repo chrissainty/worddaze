@@ -1,0 +1,25 @@
+
+@page "/login" 
+
+@layout MainLayout
+@inherits LoginModel
+
+<WdHeader Heading="WordDaze" SubHeading="Please Enter Your Login Details"></WdHeader>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <div class="editor">
+                @if (ShowLoginFailed)
+                {
+                    <div class="alert alert-danger">
+                        Login attempt failed.
+                    </div>
+                }
+                <input type="text" bind=@LoginDetails.Username placeholder="Username" class="form-control" />
+                <input type="password" bind=@LoginDetails.Password placeholder="Username" class="form-control" />
+                <button class="btn btn-primary" onclick="@Login">Login</button>
+            </div>
+        </div>
+    </div>
+</div>

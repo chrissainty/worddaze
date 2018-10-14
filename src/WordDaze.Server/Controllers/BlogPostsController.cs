@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WordDaze.Server.Controllers
 {
@@ -32,14 +33,17 @@ namespace WordDaze.Server.Controllers
             return Ok(blogPost);
         }
 
+        [Authorize]
         [HttpPost(Urls.AddBlogPost)]
         public IActionResult AddBlogPost([FromBody]BlogPost newBlogPost)
         {
+            newBlogPost.Author = Request.HttpContext.User.Identity.Name;
             var savedBlogPost = _blogPostService.AddBlogPost(newBlogPost);
 
             return Created(new Uri(Urls.BlogPost.Replace("{id}", savedBlogPost.Id.ToString()), UriKind.Relative), savedBlogPost);
         }
 
+        [Authorize]
         [HttpPut(Urls.UpdateBlogPost)]
         public IActionResult UpdateBlogPost(int id, [FromBody]BlogPost updatedBlogPost)
         {
@@ -48,6 +52,7 @@ namespace WordDaze.Server.Controllers
             return Ok();
         }
 
+        [Authorize]
         [HttpDelete(Urls.DeleteBlogPost)]
         public IActionResult DeleteBlogPost(int id)
         {
