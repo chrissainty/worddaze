@@ -37,6 +37,7 @@ namespace WordDaze.Server.Controllers
         [HttpPost(Urls.AddBlogPost)]
         public IActionResult AddBlogPost([FromBody]BlogPost newBlogPost)
         {
+            newBlogPost.Author = Request.HttpContext.User.Identity.Name;
             var savedBlogPost = _blogPostService.AddBlogPost(newBlogPost);
 
             return Created(new Uri(Urls.BlogPost.Replace("{id}", savedBlogPost.Id.ToString()), UriKind.Relative), savedBlogPost);

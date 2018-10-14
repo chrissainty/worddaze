@@ -15,3 +15,17 @@
     margin-bottom: 2rem;
     font-size: 1.3rem;
 }
+
+button.logout {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+button.logout:hover {
+    text-decoration: underline;
+}
