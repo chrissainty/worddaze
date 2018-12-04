@@ -21,7 +21,7 @@ else
             <div class="editor">
                 <input bind=@ExistingBlogPost.Title placeholder="Title" class="form-control" />
                 <textarea ref="editor" bind=@ExistingBlogPost.Post onkeyup="@UpdateCharacterCount" placeholder="Write your post (Supports Markdown)" rows="25"></textarea>
-                <div class="character-count text-blaxk-50 float-left">@CharacterCount Characters</div>
+                <div class="character-count float-left">@CharacterCount Characters</div>
                 <button class="btn btn-primary float-right" onclick="@DeletePost">Delete</button>
                 <button class="btn btn-primary float-right" onclick="@UpdatePost">Update</button>
             </div>
@@ -31,7 +31,7 @@ else
             <div class="editor">
                 <input bind=@Title placeholder="Title" class="form-control" />
                 <textarea ref="editor" bind=@Post onkeyup="@UpdateCharacterCount" placeholder="Write your post (Supports Markdown)" rows="25"></textarea>
-                <div class="character-count text-blaxk-50 float-left">@CharacterCount Characters</div>
+                <div class="character-count float-left">@CharacterCount Characters</div>
                 <button class="btn btn-primary float-right" onclick="@SavePost">Post</button>
             </div>
             }
