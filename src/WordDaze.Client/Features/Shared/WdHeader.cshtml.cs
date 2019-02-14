@@ -1,9 +1,9 @@
 using System;
-using Microsoft.AspNetCore.Blazor.Components;
+using Microsoft.AspNetCore.Components;
 
 namespace WordDaze.Client.Shared
 {
-    public class WdHeaderModel : BlazorComponent
+    public class WdHeaderModel : ComponentBase
     {
         [Parameter] protected string Heading { get; set; }
         [Parameter] protected string SubHeading { get; set; }

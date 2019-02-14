@@ -1,9 +1,9 @@
-using Microsoft.AspNetCore.Blazor.Components;
+using Microsoft.AspNetCore.Components;
 using WordDaze.Shared;
 
 namespace WordDaze.Client.Features.Home
 {
-    public class BlogPostPreviewModel : BlazorComponent 
+    public class BlogPostPreviewModel : ComponentBase
     {
         [Parameter] protected BlogPost blogPost { get; set; }
     }

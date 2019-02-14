@@ -1,12 +1,13 @@
 using System.Net.Http;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Blazor.Components;
-using Microsoft.AspNetCore.Blazor.Services;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Services;
 using WordDaze.Shared;
+
 
 namespace WordDaze.Client.Features.Login
 {
-    public class LoginModel : BlazorComponent
+    public class LoginModel : ComponentBase
     {
         [Inject] private AppState _appState { get; set; }
         [Inject] private IUriHelper _uriHelper { get; set; }

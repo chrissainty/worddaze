@@ -1,5 +1,5 @@
-using Blazored.Storage;
-using Microsoft.AspNetCore.Blazor.Builder;
+using Blazored.LocalStorage;
+using Microsoft.AspNetCore.Components.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace WordDaze.Client
@@ -8,11 +8,11 @@ namespace WordDaze.Client
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddLocalStorage();
+            services.AddBlazoredLocalStorage();
             services.AddSingleton<AppState>();
         }
 
-        public void Configure(IBlazorApplicationBuilder app)
+        public void Configure(IComponentsApplicationBuilder app)
         {
             app.AddComponent<App>("app");
         }
