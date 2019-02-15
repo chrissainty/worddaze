@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Blazor.Server;
+using Microsoft.AspNetCore.Components.Server;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.ResponseCompression;
@@ -29,7 +29,7 @@ namespace WordDaze.Server
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                    .AddJwtBearer(options => 
+                    .AddJwtBearer(options =>
                     {
                         options.TokenValidationParameters = new TokenValidationParameters
                         {
@@ -43,16 +43,8 @@ namespace WordDaze.Server
                         };
                     });
 
-            services.AddMvc();
-
-            services.AddResponseCompression(options =>
-            {
-                options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[]
-                {
-                    MediaTypeNames.Application.Octet,
-                    WasmMediaTypeNames.Application.Wasm,
-                });
-            });
+            services.AddMvc().AddNewtonsoftJson();
+            services.AddResponseCompression();
 
             services.AddSingleton(typeof(BlogPostService));
         }
@@ -74,7 +66,8 @@ namespace WordDaze.Server
                 routes.MapRoute(name: "default", template: "{controller}/{action}/{id?}");
             });
 
-            app.UseBlazor<Client.Program>();
+            app.UseBlazor<Client.Startup>();
+            app.UseBlazorDebugging();
         }
     }
 }

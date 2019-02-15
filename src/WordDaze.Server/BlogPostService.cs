@@ -7,7 +7,7 @@ namespace WordDaze.Server
 {
     public class BlogPostService
     {
-        private List<BlogPost> _blogPosts;
+        private readonly List<BlogPost> _blogPosts;
 
         public BlogPostService()
         {

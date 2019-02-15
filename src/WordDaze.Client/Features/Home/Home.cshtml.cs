@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Blazor.Components;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Blazor.Services;
 using Microsoft.AspNetCore.Blazor;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace WordDaze.Client.Features.Home
 {
-    public class HomeModel : BlazorComponent 
+    public class HomeModel : ComponentBase
     {
         [Inject] private HttpClient _httpClient { get; set; }
         

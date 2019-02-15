@@ -2,14 +2,15 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Blazor;
-using Microsoft.AspNetCore.Blazor.Components;
-using Microsoft.AspNetCore.Blazor.Services;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Services;
 using Microsoft.JSInterop;
 using WordDaze.Shared;
 
+
 namespace WordDaze.Client.Features.PostEditor
 {
-    public class PostEditorModel : BlazorComponent
+    public class PostEditorModel : ComponentBase
     {
         [Inject] private HttpClient _httpClient { get; set; }
         [Inject] private IUriHelper _uriHelper { get; set; }
