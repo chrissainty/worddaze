@@ -1,15 +1,10 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Components.Server;
+﻿using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json.Serialization;
-using System.Linq;
-using System.Net.Mime;
-using System.Text;
 
 namespace WordDaze.Server
 {
@@ -44,9 +39,10 @@ namespace WordDaze.Server
                     });
 
             services.AddMvc().AddNewtonsoftJson();
-            services.AddResponseCompression();
 
-            services.AddSingleton(typeof(BlogPostService));
+            services.AddScoped<App.AppState>();
+            services.AddRazorComponents<App.Startup>();
+            services.AddResponseCompression();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,13 +57,13 @@ namespace WordDaze.Server
 
             app.UseAuthentication();
 
+            app.UseStaticFiles();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(name: "default", template: "{controller}/{action}/{id?}");
             });
 
-            app.UseBlazor<Client.Startup>();
-            app.UseBlazorDebugging();
+            app.UseRazorComponents<App.Startup>();
         }
     }
 }
