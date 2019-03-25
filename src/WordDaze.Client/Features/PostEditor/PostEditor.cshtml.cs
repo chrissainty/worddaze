@@ -15,6 +15,7 @@ namespace WordDaze.Client.Features.PostEditor
         [Inject] private HttpClient _httpClient { get; set; }
         [Inject] private IUriHelper _uriHelper { get; set; }
         [Inject] private AppState _appState { get; set; }
+        [Inject] IJSRuntime JSRuntime { get; set; }
 
         [Parameter] protected string PostId { get; set; }
 
@@ -39,7 +40,7 @@ namespace WordDaze.Client.Features.PostEditor
             }
         }
 
-        public async Task UpdateCharacterCount() => CharacterCount = await JSRuntime.Current.InvokeAsync<int>("wordDaze.getCharacterCount", editor);
+        public async Task UpdateCharacterCount() => CharacterCount = await JSRuntime.InvokeAsync<int>("wordDaze.getCharacterCount", editor);
 
         public async Task SavePost() 
         {

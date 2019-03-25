@@ -10,13 +10,14 @@ using Newtonsoft.Json.Serialization;
 using System.Linq;
 using System.Net.Mime;
 using System.Text;
+using Microsoft.Extensions.Hosting;
 
 namespace WordDaze.Server
 {
     public class Startup
     {
         public IConfiguration Configuration { get; }
-        public Startup(IHostingEnvironment env)
+        public Startup(IWebHostEnvironment env)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
@@ -45,18 +46,18 @@ namespace WordDaze.Server
 
             services.AddMvc().AddNewtonsoftJson();
             services.AddResponseCompression();
-
             services.AddSingleton(typeof(BlogPostService));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseResponseCompression();
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseBlazorDebugging();
             }
 
             app.UseAuthentication();
@@ -67,7 +68,6 @@ namespace WordDaze.Server
             });
 
             app.UseBlazor<Client.Startup>();
-            app.UseBlazorDebugging();
         }
     }
 }
