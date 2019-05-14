@@ -45,7 +45,11 @@ namespace WordDaze.Server
                     });
 
             services.AddMvc().AddNewtonsoftJson();
-            services.AddResponseCompression();
+            services.AddResponseCompression(opts =>
+            {
+                opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
+                    new[] { "application/octet-stream" });
+            });
             services.AddSingleton(typeof(BlogPostService));
         }
 
@@ -61,10 +65,12 @@ namespace WordDaze.Server
             }
 
             app.UseAuthentication();
+            app.UseAuthorization();
+            app.UseRouting();
 
-            app.UseMvc(routes =>
+            app.UseEndpoints(routes =>
             {
-                routes.MapRoute(name: "default", template: "{controller}/{action}/{id?}");
+                routes.MapDefaultControllerRoute();
             });
 
             app.UseBlazor<Client.Startup>();

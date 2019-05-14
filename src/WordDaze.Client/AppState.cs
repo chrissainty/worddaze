@@ -37,7 +37,7 @@ namespace WordDaze.Client
 
         public async Task Logout()
         {
-            await _localStorage.RemoveItem("authToken");
+            await _localStorage.RemoveItemAsync("authToken");
             IsLoggedIn = false;
         }
 
@@ -46,14 +46,14 @@ namespace WordDaze.Client
             var responseContent = await response.Content.ReadAsStringAsync();
             var jwt = Json.Deserialize<JwToken>(responseContent);
 
-            await _localStorage.SetItem("authToken", jwt.Token);
+            await _localStorage.SetItemAsync("authToken", jwt.Token);
         }
 
         private async Task SetAuthorizationHeader()
         {
             if (!_httpClient.DefaultRequestHeaders.Contains("Authorization"))
             {
-                var token = await _localStorage.GetItem<string>("authToken");
+                var token = await _localStorage.GetItemAsync<string>("authToken");
                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             }
         }
