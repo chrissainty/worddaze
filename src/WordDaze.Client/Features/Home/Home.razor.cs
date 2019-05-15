@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using WordDaze.Shared;
 using System.Linq;
 
-namespace WordDaze.Client.Features
+namespace WordDaze.Client.Features.Home
 {
     public class HomeModel : ComponentBase
     {
