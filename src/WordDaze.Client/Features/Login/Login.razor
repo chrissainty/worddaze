@@ -16,9 +16,9 @@
                         Login attempt failed.
                     </div>
                 }
-                <input type="text" bind=@LoginDetails.Username placeholder="Username" class="form-control" />
-                <input type="password" bind=@LoginDetails.Password placeholder="Username" class="form-control" />
-                <button class="btn btn-primary" onclick="@Login">Login</button>
+                <input type="text" @bind=@LoginDetails.Username placeholder="Username" class="form-control" />
+                <input type="password" @bind=@LoginDetails.Password placeholder="Username" class="form-control" />
+                <button class="btn btn-primary" @onclick="@Login">Login</button>
             </div>
         </div>
     </div>
