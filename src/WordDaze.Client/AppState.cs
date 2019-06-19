@@ -1,6 +1,7 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Blazored.LocalStorage;
 using Microsoft.JSInterop;
@@ -24,7 +25,7 @@ namespace WordDaze.Client
 
         public async Task Login(LoginDetails loginDetails)
         {
-            var response = await _httpClient.PostAsync(Urls.Login, new StringContent(Json.Serialize(loginDetails), Encoding.UTF8, "application/json"));
+            var response = await _httpClient.PostAsync(Urls.Login, new StringContent(JsonSerializer.ToString(loginDetails), Encoding.UTF8, "application/json"));
 
             if (response.IsSuccessStatusCode)
             {
@@ -44,7 +45,7 @@ namespace WordDaze.Client
         private async Task SaveToken(HttpResponseMessage response)
         {
             var responseContent = await response.Content.ReadAsStringAsync();
-            var jwt = Json.Deserialize<JwToken>(responseContent);
+            var jwt = JsonSerializer.Parse<JwToken>(responseContent);
 
             await _localStorage.SetItemAsync("authToken", jwt.Token);
         }
