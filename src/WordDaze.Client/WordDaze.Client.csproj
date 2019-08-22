@@ -19,8 +19,4 @@
     <ProjectReference Include="..\WordDaze.Shared\WordDaze.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Layout\" />
-  </ItemGroup>
-
 </Project>
