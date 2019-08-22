@@ -5,6 +5,6 @@ namespace WordDaze.Client.Features.Home
 {
     public class BlogPostPreviewModel : ComponentBase
     {
-        [Parameter] protected BlogPost blogPost { get; set; }
+        [Parameter] public BlogPost blogPost { get; set; }
     }
 }

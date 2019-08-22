@@ -1,6 +1,4 @@
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Blazor.Services;
-using Microsoft.AspNetCore.Blazor;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -15,7 +13,7 @@ namespace WordDaze.Client.Features.Home
 
         protected List<BlogPost> blogPosts { get; set; } = new List<BlogPost>();
 
-        protected override async Task OnInitAsync()
+        protected override async Task OnInitializedAsync()
         {
             await LoadBlogPosts();
         }

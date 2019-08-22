@@ -16,7 +16,7 @@ namespace WordDaze.Client.Features.PostEditor
         [Inject] private AppState _appState { get; set; }
         [Inject] IJSRuntime JSRuntime { get; set; }
 
-        [Parameter] protected string PostId { get; set; }
+        [Parameter] public string PostId { get; set; }
 
         protected string Post { get; set; }
         protected string Title { get; set; }
@@ -24,9 +24,9 @@ namespace WordDaze.Client.Features.PostEditor
         protected BlogPost ExistingBlogPost { get; set; } = new BlogPost();
         protected bool IsEdit => string.IsNullOrEmpty(PostId) ? false : true;
 
-        protected ElementRef editor;
+        protected ElementReference editor;
 
-        protected override async Task OnInitAsync()
+        protected override async Task OnInitializedAsync()
         {
             if (!_appState.IsLoggedIn) 
             {

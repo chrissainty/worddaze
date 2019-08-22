@@ -12,11 +12,11 @@ namespace WordDaze.Client.Features.ViewPost
     {
         [Inject] private HttpClient _httpClient { get; set; }
 
-        [Parameter] protected string PostId { get; set; }
+        [Parameter] public string PostId { get; set; }
 
         protected BlogPost BlogPost { get; set; } = new BlogPost();
 
-        protected override async Task OnInitAsync()
+        protected override async Task OnInitializedAsync()
         {
             await LoadBlogPost();
         }
