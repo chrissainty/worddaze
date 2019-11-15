@@ -12,7 +12,7 @@ namespace WordDaze.Client.Features.PostEditor
     public class PostEditorModel : ComponentBase
     {
         [Inject] private HttpClient _httpClient { get; set; }
-        [Inject] private IUriHelper _uriHelper { get; set; }
+        [Inject] private NavigationManager _navManager { get; set; }
         [Inject] private AppState _appState { get; set; }
         [Inject] IJSRuntime JSRuntime { get; set; }
 
@@ -30,7 +30,7 @@ namespace WordDaze.Client.Features.PostEditor
         {
             if (!_appState.IsLoggedIn) 
             {
-                _uriHelper.NavigateTo("/");
+                _navManager.NavigateTo("/");
             }
 
             if (!string.IsNullOrEmpty(PostId))
@@ -51,21 +51,21 @@ namespace WordDaze.Client.Features.PostEditor
 
             var savedPost = await _httpClient.PostJsonAsync<BlogPost>(Urls.AddBlogPost, newPost);
 
-            _uriHelper.NavigateTo($"viewpost/{savedPost.Id}");
+            _navManager.NavigateTo($"viewpost/{savedPost.Id}");
         }
 
         public async Task UpdatePost() 
         {
             await _httpClient.PutJsonAsync(Urls.UpdateBlogPost.Replace("{id}", PostId), ExistingBlogPost);
 
-            _uriHelper.NavigateTo($"viewpost/{ExistingBlogPost.Id}");
+            _navManager.NavigateTo($"viewpost/{ExistingBlogPost.Id}");
         }
 
         public async Task DeletePost() 
         {
             await _httpClient.DeleteAsync(Urls.DeleteBlogPost.Replace("{id}", ExistingBlogPost.Id.ToString()));
 
-            _uriHelper.NavigateTo("/");
+            _navManager.NavigateTo("/");
         }
 
         private async Task LoadPost() 

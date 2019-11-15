@@ -9,7 +9,7 @@ namespace WordDaze.Client.Features.Login
     public class LoginModel : ComponentBase
     {
         [Inject] private AppState _appState { get; set; }
-        [Inject] private IUriHelper _uriHelper { get; set; }
+        [Inject] private NavigationManager _navManager { get; set; }
         
         protected LoginDetails LoginDetails { get; set; } = new LoginDetails();
         protected bool ShowLoginFailed { get; set; }
@@ -20,7 +20,7 @@ namespace WordDaze.Client.Features.Login
 
             if (_appState.IsLoggedIn)
             {
-                _uriHelper.NavigateTo("/");
+                _navManager.NavigateTo("/");
             }
             else
             {
